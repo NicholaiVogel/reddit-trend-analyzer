@@ -1,0 +1,21 @@
+{
+  "name": "reddit-trend-analyzer",
+  "version": "1.0.0",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "tui": "bun run src/index.ts",
+    "dev": "bun --watch run src/cli.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@opentui/core": "^0.1.74",
+    "@qdrant/js-client-rest": "^1.16.2",
+    "ollama": "^0.6.3"
+  }
+}
