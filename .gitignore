@@ -5,6 +5,7 @@ node_modules
 out
 dist
 *.tgz
+.next
 
 # code coverage
 coverage
@@ -36,4 +37,11 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # exported data
 reddit-trends.json
 reddit-trends.csv
-.env
+
+# sqlite database
+data/*.db
+data/*.db-journal
+
+# next.js
+packages/web/.next
+.grepai/

@@ -1,0 +1,25 @@
+{
+  "name": "@rta/core",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./scraper": "./src/scraper/index.ts",
+    "./embeddings": "./src/embeddings/index.ts",
+    "./storage": "./src/storage/index.ts",
+    "./clustering": "./src/clustering/index.ts",
+    "./analysis": "./src/analysis/index.ts",
+    "./utils": "./src/utils/index.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@qdrant/js-client-rest": "^1.16.2",
+    "better-sqlite3": "^11.7.0",
+    "ollama": "^0.6.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12"
+  }
+}

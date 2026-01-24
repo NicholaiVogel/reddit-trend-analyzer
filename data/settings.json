@@ -1,0 +1,5 @@
+{
+  "summarizationModel": "llava-llama3:latest",
+  "sentimentModel": "llava-llama3:latest",
+  "embeddingModel": "nomic-embed-text"
+}
