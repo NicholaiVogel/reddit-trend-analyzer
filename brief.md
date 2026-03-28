@@ -11,7 +11,7 @@ find what people struggle with most -> create content/tools that solve those pro
 tech stack
 ---
 
-- vector database: qdrant
+- vector database: sqlite-vec (local sqlite)
 - embeddings: nomic-embed-text (ollama)
 - framework: next.js
 - components: shadcn
@@ -22,7 +22,7 @@ data pipeline
 ---
 
 ```
-reddit scrape -> text cleaning -> embedding -> qdrant storage
+reddit scrape -> text cleaning -> embedding -> sqlite-vec storage
                                       |
                               clustering (HDBSCAN)
                                       |
@@ -39,7 +39,7 @@ core features
 existing CLI handles this well:
 - scrape subreddit posts + comments
 - embed with nomic-embed-text
-- store in qdrant with metadata (score, created, subreddit, type)
+- store in sqlite-vec with metadata (score, created, subreddit, type)
 
 **2. problem clustering**
 
@@ -135,7 +135,7 @@ implementation phases
 - [ ] add HDBSCAN clustering to pipeline
 - [ ] LLM integration for problem summarization (claude or local)
 - [ ] question extraction with pattern matching + dedup
-- [ ] store clusters in qdrant (or sqlite sidecar)
+- [ ] store clusters in sqlite sidecar
 - [ ] CLI commands: `cluster`, `problems`, `questions`
 
 **phase 2: web UI**
@@ -158,8 +158,8 @@ env vars
 ---
 
 ```
-QDRANT_URL=https://vectors.biohazardvfx.com
-QDRANT_API_KEY=<key>
+SQLITE_VEC_DB_PATH=./data/reddit-vectors.db
+SQLITE_DB_PATH=./data/reddit-trends.db
 OLLAMA_HOST=http://localhost:11434
 ANTHROPIC_API_KEY=<key>  # for problem summarization
 ```
@@ -342,5 +342,4 @@ theme (globals.css)
   --shadow-2xl: var(--shadow-2xl);
 }
 ```
-
 

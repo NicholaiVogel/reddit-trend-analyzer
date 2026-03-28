@@ -3,18 +3,34 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "bin": {
+    "rta": "./packages/cli/src/cli.ts"
+  },
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/cli"
   ],
   "scripts": {
     "cli": "bun run packages/cli/src/cli.ts",
-    "tui": "bun run packages/cli/src/index.ts",
-    "dev": "bun run --filter @rta/web dev",
-    "build": "bun run --filter @rta/web build",
-    "start": "bun run build && bun run --filter @rta/web start"
+    "dev": "bun run cli",
+    "start": "bun run cli",
+    "link": "bun link"
+  },
+  "files": [
+    "README.md",
+    ".env.example",
+    "packages/cli/src",
+    "packages/core/src"
+  ],
+  "engines": {
+    "bun": ">=1.3.0"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "ollama": "^0.6.3",
+    "sqlite-vec": "^0.1.7"
   }
 }

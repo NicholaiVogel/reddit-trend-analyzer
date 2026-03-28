@@ -18,7 +18,7 @@ export { EmbeddingPipeline, VECTOR_DIM } from './embeddings'
 export type { EmbeddedPoint, EmbeddingProgress } from './embeddings'
 
 // storage
-export { QdrantStorage, COLLECTION_NAME, SQLiteStorage } from './storage'
+export { SQLiteVecStorage, COLLECTION_NAME, SQLiteStorage } from './storage'
 export type { PointPayload, SearchResult, CollectionStats, ScrapeHistoryRecord } from './storage'
 
 // clustering

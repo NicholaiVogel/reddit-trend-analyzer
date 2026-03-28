@@ -41,7 +41,7 @@ reddit-trends.csv
 # sqlite database
 data/*.db
 data/*.db-journal
+data/*.db-shm
+data/*.db-wal
 
-# next.js
-packages/web/.next
 .grepai/

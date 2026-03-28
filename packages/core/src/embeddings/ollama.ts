@@ -158,13 +158,12 @@ export class EmbeddingPipeline {
     return points
   }
 
-  async checkConnection(): Promise<boolean> {
+  async checkConnection(requireModel: boolean = false): Promise<boolean> {
     try {
       const result = await this.ollama.list()
+      if (!requireModel) return true
       const hasModel = result.models.some(m => m.name.startsWith(MODEL))
-      if (!hasModel) {
-        console.warn(`Model ${MODEL} not found. Available models:`, result.models.map(m => m.name))
-      }
+      if (!hasModel) return false
       return true
     } catch {
       return false

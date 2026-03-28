@@ -1,4 +1,4 @@
-import type { QdrantStorage } from '../storage/qdrant'
+import type { SQLiteVecStorage } from '../storage/sqlite-vec'
 import type {
   Cluster,
   ClusterPoint,
@@ -11,9 +11,9 @@ const DEFAULT_SIMILARITY_THRESHOLD = 0.5
 const DEFAULT_SAMPLES_PER_CLUSTER = 10
 
 export class ClusteringPipeline {
-  private storage: QdrantStorage
+  private storage: SQLiteVecStorage
 
-  constructor(storage: QdrantStorage) {
+  constructor(storage: SQLiteVecStorage) {
     this.storage = storage
   }
 

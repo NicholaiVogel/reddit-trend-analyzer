@@ -1,16 +1,22 @@
-import Database from 'better-sqlite3'
+import { Database } from 'bun:sqlite'
 import { existsSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { join, resolve } from 'path'
 import type { ProblemSummary, ExtractedQuestion } from '../analysis/types'
 
 function getDefaultDbPath(): string {
-  // use env var if set, otherwise use hardcoded path relative to monorepo
+  // use env var if set
   if (process.env.SQLITE_DB_PATH) {
     return process.env.SQLITE_DB_PATH
   }
 
-  // hardcode the path for this project
-  const projectRoot = '/mnt/work/dev/personal-projects/reddit-trend-analyzer'
+  // prefer cwd/data when running from repo root
+  const cwdDataDir = join(process.cwd(), 'data')
+  if (existsSync(cwdDataDir)) {
+    return join(cwdDataDir, 'reddit-trends.db')
+  }
+
+  // fallback to project root derived from this file location
+  const projectRoot = resolve(import.meta.dir, '../../../../')
   const dataDir = join(projectRoot, 'data')
 
   if (!existsSync(dataDir)) {
@@ -46,7 +52,7 @@ export interface ClusterRecord {
 }
 
 export class SQLiteStorage {
-  private db: Database.Database
+  private db: Database
 
   constructor(dbPath?: string) {
     this.db = new Database(dbPath || getDefaultDbPath())
@@ -98,7 +104,7 @@ export class SQLiteStorage {
 
     // migration: add sample_point_ids column if missing (for existing databases)
     try {
-      const columns = this.db.pragma('table_info(clusters)') as { name: string }[]
+      const columns = this.db.query('PRAGMA table_info(clusters)').all() as { name: string }[]
       const hasSamplePointIds = columns.some(c => c.name === 'sample_point_ids')
       if (!hasSamplePointIds) {
         this.db.exec('ALTER TABLE clusters ADD COLUMN sample_point_ids TEXT')

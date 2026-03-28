@@ -14,12 +14,7 @@
     "./utils": "./src/utils/index.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.32.1",
-    "@qdrant/js-client-rest": "^1.16.2",
-    "better-sqlite3": "^11.7.0",
-    "ollama": "^0.6.3"
-  },
-  "devDependencies": {
-    "@types/better-sqlite3": "^7.6.12"
+    "ollama": "^0.6.3",
+    "sqlite-vec": "^0.1.7"
   }
 }
